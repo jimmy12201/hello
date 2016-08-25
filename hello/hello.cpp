@@ -1,12 +1,17 @@
-// hello.cpp : Defines the entry point for the console application.
-//
+
 
 #include "stdafx.h"
 #include <iostream>
+#include <string>
 using namespace std;
+
 
 int main()
 {
-	cout << "Hello, Cameron!\n";
+	string name;
+	cout << "What is your name? ";
+	getline(cin, name);
+	cout << "Hello," << name << "!\n";
+	
 }
 
