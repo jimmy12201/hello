@@ -1,21 +1,23 @@
-// Testing.cpp : Defines the entry point for the console application.
-//
+#include <iostream>
 
+#ifdef _WIN32
 #include "stdafx.h"
 #include <Windows.h>
 #include <Lmcons.h>
+#include <string>
 #include <iostream>
 #include <ctype.h>
-#include <string>
-
 using namespace std;
+
+
 
 int  main()
 {
 	TCHAR username[UNLEN + 1];
 	DWORD size = UNLEN + 1;
 	GetUserName((TCHAR*)username, &size);
-	for (int i = 0; i <= size; i++)
+	cout << "Hello, ";
+	for (int i = 0; i <= (int)size; i++)
 	{
 		if (isprint(username[i]) || isspace(username[i]))
 		{
@@ -26,5 +28,31 @@ int  main()
 			break;
 		}
 	}
+	cout << "!\n";
 }
 
+#else __linux__
+#include <stdio.h>
+#include <unistd.h>
+
+
+int main() {
+
+
+	char *user;
+	user = getlogin();
+	cout << "Hello, ";
+	for (int i = 0; i <= 35; i++)
+	{
+		if (isprint(user[i]) || isspace(user[i]))
+		{
+			cout << (char)(user[i]);
+		}
+		else
+		{
+			break;
+		}
+	}
+	cout << "!\n";
+}
+#endif
